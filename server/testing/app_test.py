@@ -1,5 +1,7 @@
 import json
 
+import pdb
+
 from app import app
 from models import db, Plant
 
@@ -42,6 +44,9 @@ class TestPlant:
 
     def test_plant_by_id_delete_route_deletes_plant(self):
         '''returns JSON representing updated Plant object at "/plants/<int:id>".'''
+
+        # pdb.set_trace()
+
         with app.app_context():
             lo = Plant(
                 name="Live Oak",
@@ -55,5 +60,6 @@ class TestPlant:
             
             response = app.test_client().delete(f'/plants/{lo.id}')
             data = response.data.decode()
+                      
 
             assert(not data)
